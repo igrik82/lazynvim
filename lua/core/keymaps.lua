@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
@@ -7,8 +6,8 @@ keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", { noremap = true })
 keymap.set("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { noremap = true })
 
 --Resize windows in vertical split
-keymap.set("n", "<C-]>", ":vertical resize -10<CR>", { noremap = true })
-keymap.set("n", "<C-[>", ":vertical resize +10<CR>", { noremap = true })
+--keymap.set("n", "<C-]>", ":vertical resize -10<CR>", { noremap = true })
+--keymap.set("n", "<C-[>", ":vertical resize +10<CR>", { noremap = true })
 -- keymap.set("n", "<C-<Up>>", ":resize -2<CR>", { noremap = true })
 -- keymap.set("n", "<C-'>", ":resize +2<CR>", { noremap = true })
 
