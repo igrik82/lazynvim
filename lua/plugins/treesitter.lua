@@ -7,6 +7,8 @@ return {
 		-- configure telescope
 		treesitter.setup({
 			ensure_installed = {
+				"gitignore",
+				"arduino",
 				"cpp",
 				"c",
 				"python",
