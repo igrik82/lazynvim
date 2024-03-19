@@ -19,9 +19,9 @@ vim.lsp.set_log_level("off")
 vim.g.floaterm_autoclose = 0
 
 -- Disable virtual_text since it's redundant due to lsp_lines.
-vim.diagnostic.config({
-	virtual_text = false,
-})
+-- vim.diagnostic.config({
+-- 	virtual_text = false,
+-- })
 --Spelling
 opt.spell = true
 opt.spelllang = { "en_us" }
@@ -31,16 +31,16 @@ opt.background = "dark"
 opt.signcolumn = "yes"
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
-opt.number = true -- shows absolute line number on cursor line (when relative number is on)
+opt.number = true         -- shows absolute line number on cursor line (when relative number is on)
 
 -- Splits horizontal below and vertical right
 opt.splitbelow = true
 opt.splitright = true
 
 -- tabs & indentation
-opt.tabstop = 2 -- 4 spaces for tabs (prettier default)
-opt.shiftwidth = 2 -- 4 spaces for indent width
-opt.expandtab = true -- expand tab to spaces
+opt.tabstop = 2       -- 4 spaces for tabs (prettier default)
+opt.shiftwidth = 2    -- 4 spaces for indent width
+opt.expandtab = true  -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
@@ -48,7 +48,7 @@ opt.wrap = false -- disable line wrapping
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+opt.smartcase = true  -- if you include mixed case in your search, assumes you want case-sensitive
 opt.hlsearch = false
 opt.iskeyword:append("-")
 

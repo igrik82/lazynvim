@@ -49,8 +49,17 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
+      -- Change the Diagnostic symbols in the sign column (gutter)
+      -- (not in youtube nvim video)
+      local signs = { Error = " ", Warn = " ", Hint = "! ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+      end
+
+      -- local capabilities = lspconfig.capabilities()
       -- enable keybinds only for when lsp server available
-      local on_attach = function(client, bufnr) end
+      -- local on_attach = function(client, bufnr) end
       -- configure  arduino server
       lspconfig["arduino_language_server"].setup({
         capabilities = capabilities,
@@ -105,7 +114,7 @@ return {
       })
 
       -- configure lua server (with special settings)
-      lspconfig["lua_ls"].setup({
+      lspconfig.lua_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         settings = { -- custom settings for lua
@@ -124,6 +133,7 @@ return {
           },
         },
       })
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 
       -- configure Bash
       lspconfig["bashls"].setup({
