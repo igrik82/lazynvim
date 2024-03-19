@@ -1,6 +1,10 @@
 --map leader
 vim.g.mapleader = " "
 
+--Settings
+require("core.keymaps")
+require("core.options")
+
 --Setup lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -17,6 +21,3 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
---Settings
-require("core.keymaps")
-require("core.options")
