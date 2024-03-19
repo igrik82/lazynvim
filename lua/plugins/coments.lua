@@ -1,10 +1,26 @@
+
 return{
   "numToStr/Comment.nvim",
   lazy = false,
+  init = function()
+ local wk = require("which-key") 
+      local mappings = {
+        g = "Comments",
+}
+local opts = {prefix = "<leader>"}
+wk.register(mappings, opts)
+  end,
   opts = {
-    toggler = {
-    line = "<leader>/", --Line-comment toggle keymap
-    block = "gbc", --Block-comment toggle keymap
+            ignore = '^$',
+            toggler = {
+                line = '<leader>gc',
+                block = '<leader>gb',
+            },
+            opleader = {
+                line = '<leader>gc',
+                block = '<leader>gb',
+            },
     }
 }
-}
+
+
