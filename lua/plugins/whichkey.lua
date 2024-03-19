@@ -2,6 +2,8 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  keys = {"<leader>", "<c-r>"},
+  cmd = "WhichKey",
   init = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 400
@@ -13,7 +15,7 @@ return {
 
 
 }
-local opts = {prefix = "<leader>"}
+local opts = {prefix = "<leader>", "<c-r>"}
 wk.register(mappings, opts)
   end,
   opts = {
