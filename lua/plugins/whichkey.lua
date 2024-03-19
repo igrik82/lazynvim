@@ -1,6 +1,7 @@
 
 return {
   "folke/which-key.nvim",
+  lazy = true,
   event = "VeryLazy",
   keys = {"<leader>", "<c-r>"},
   cmd = "WhichKey",
