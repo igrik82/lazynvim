@@ -47,60 +47,60 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      -- local wk = require("which-key")
-      -- local mappings = {
-      -- 	l = "LSP things",
-      -- }
-      -- local optss = { prefix = "<leader>" }
+      local wk = require("which-key")
+      local mappings = {
+        l = "LSP things",
+      }
+      local optss = { prefix = "<leader>" }
 
-      -- wk.register(mappings, optss)
+      wk.register(mappings, optss)
 
-      -- local lspconfig = require("lspconfig")
+      local lspconfig = require("lspconfig")
 
-      -- -- Global mappin .
-      -- -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      -- vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { desc = "Go to prev LSP diagnoctic" })
-      -- vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { desc = "Go to next LSP diagnostic" })
+      -- Global mappin .
+      -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+      vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { desc = "Go to prev LSP diagnoctic" })
+      vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { desc = "Go to next LSP diagnostic" })
 
-      -- -- Use LspAttach autocommand to only map the following keys
-      -- -- after the language server attaches to the current buffer
-      -- vim.api.nvim_create_autocmd("LspAttach", {
-      -- 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      -- 	callback = function(ev)
-      -- 		-- Enable completion triggered by <c-x><c-o>
-      -- 		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+      -- Use LspAttach autocommand to only map the following keys
+      -- after the language server attaches to the current buffer
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+        callback = function(ev)
+          -- Enable completion triggered by <c-x><c-o>
+          vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-      -- 		-- Buffer local mappings.
-      -- 		-- See `:help vim.lsp.*` for documentation on any of the below functions
-      -- 		local opts = { buffer = ev.buf }
-      -- 		vim.keymap.set("n", "<leader>lD2", vim.lsp.buf.declaration, { desc = "Declaration" }, opts)
-      -- 		vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, { desc = "Definition" }, opts)
-      -- 		vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, { desc = "Hover" }, opts)
-      -- 		vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "Implementation" }, opts)
-      -- 		vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { desc = "Signature" }, opts)
-      -- 		vim.keymap.set(
-      -- 			"n",
-      -- 			"<leader>lf",
-      -- 			vim.lsp.buf.add_workspace_folder,
-      -- 			{ desc = "Add workspace folder" },
-      -- 			opts
-      -- 		)
-      -- 		vim.keymap.set(
-      -- 			"n",
-      -- 			"<leader>lF",
-      -- 			vim.lsp.buf.remove_workspace_folder,
-      -- 			{ desc = "Remove workspace folder" },
-      -- 			opts
-      -- 		)
-      -- 		vim.keymap.set("n", "<leader>ll", function()
-      -- 			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      -- 		end, { desc = "List workspace folder" }, opts)
-      -- 		vim.keymap.set("n", "<leader>lD1", vim.lsp.buf.type_definition, { desc = "Type defenition" }, opts)
-      -- 		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename" }, opts)
-      -- 		vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code action" }, opts)
-      -- 		vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references, { desc = "References" }, opts)
-      -- 	end,
-      -- })
+          -- Buffer local mappings.
+          -- See `:help vim.lsp.*` for documentation on any of the below functions
+          local opts = { buffer = ev.buf }
+          vim.keymap.set("n", "<leader>lD2", vim.lsp.buf.declaration, { desc = "Declaration" }, opts)
+          vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, { desc = "Definition" }, opts)
+          vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, { desc = "Hover" }, opts)
+          vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "Implementation" }, opts)
+          vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { desc = "Signature" }, opts)
+          vim.keymap.set(
+            "n",
+            "<leader>lf",
+            vim.lsp.buf.add_workspace_folder,
+            { desc = "Add workspace folder" },
+            opts
+          )
+          vim.keymap.set(
+            "n",
+            "<leader>lF",
+            vim.lsp.buf.remove_workspace_folder,
+            { desc = "Remove workspace folder" },
+            opts
+          )
+          vim.keymap.set("n", "<leader>ll", function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          end, { desc = "List workspace folder" }, opts)
+          vim.keymap.set("n", "<leader>lD1", vim.lsp.buf.type_definition, { desc = "Type defenition" }, opts)
+          vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename" }, opts)
+          vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code action" }, opts)
+          vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references, { desc = "References" }, opts)
+        end,
+      })
 
       -- Change the Diagnostic symbols in the sign column (gutter)
       -- (not in youtube nvim video)
