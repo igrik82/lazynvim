@@ -47,36 +47,40 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local wk = require("which-key")
-      local mappings = {
-        l = "LSP things",
-      }
-      local optss = { prefix = "<leader>" }
-
-      wk.register(mappings, optss)
-
       local lspconfig = require("lspconfig")
 
       -- Global mappin .
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { desc = "Go to prev LSP diagnoctic" })
-      vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { desc = "Go to next LSP diagnostic" })
+      vim.keymap.set("n", "[g", ":Lspsaga diagnostic_jump_prev<cr>", { desc = "Go to prev LSP diagnoctic" })
+      vim.keymap.set("n", "]g", ":Lspsaga diagnostic_jump_prev<cr>", { desc = "Go to next LSP diagnostic" })
 
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
+          -- Do LSP trought whhich-key
+          local wk = require("which-key")
+          local mappings = {
+            l = {
+              name = "LSP things",
+              d = { ":Lspsaga goto_definition<cr>", "Goto defenition" },
+              D = { ":Lspsaga goto_type_definition<cr>", "Goto type defenition" },
+              k = { ":Lspsaga hover_doc<cr>", "Hover" },
+              o = { ":Lspsaga outline<cr>", "List functions" },
+              a = { ":Lspsaga code_action<cr>", "Code action" },
+              r = { ":Lspsaga rename<cr>", "Rename" },
+              R = { ":Lspsaga finder<cr>", "Reference" },
+            },
+          }
+          local optss = { prefix = "<leader>" }
+
+          wk.register(mappings, optss)
           -- Enable completion triggered by <c-x><c-o>
           vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
           local opts = { buffer = ev.buf }
-          vim.keymap.set("n", "<leader>lD2", vim.lsp.buf.declaration, { desc = "Declaration" }, opts)
-          vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, { desc = "Definition" }, opts)
-          vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, { desc = "Hover" }, opts)
-          vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "Implementation" }, opts)
           vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { desc = "Signature" }, opts)
           vim.keymap.set(
             "n",
@@ -95,10 +99,6 @@ return {
           vim.keymap.set("n", "<leader>ll", function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
           end, { desc = "List workspace folder" }, opts)
-          vim.keymap.set("n", "<leader>lD1", vim.lsp.buf.type_definition, { desc = "Type defenition" }, opts)
-          vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename" }, opts)
-          vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code action" }, opts)
-          vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references, { desc = "References" }, opts)
         end,
       })
 
