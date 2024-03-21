@@ -82,27 +82,27 @@ return {
 			table.insert(config.sections.lualine_x, component)
 		end
 
-		ins_left({
-			function()
-				return "▊"
-			end,
-			color = { fg = colors.blue }, -- Sets highlighting of component
-			padding = { left = 0, right = 1 }, -- We don't need space before this
-		})
+		-- ins_left({
+		-- 	function()
+		-- 		return "▊"
+		-- 	end,
+		-- 	color = { fg = colors.blue }, -- Sets highlighting of component
+		-- 	padding = { left = 0, right = 1 }, -- We don't need space before this
+		-- })
 
 		ins_left({
 			-- mode component
 			function()
-				return ""
+				return "󰣇"
 			end,
 			color = function()
 				-- auto change color according to neovims mode
 				local mode_color = {
-					n = colors.red,
+					n = colors.blue,
 					i = colors.green,
-					v = colors.blue,
+					v = colors.cyan,
 					[""] = colors.blue,
-					V = colors.blue,
+					V = colors.cyan,
 					c = colors.magenta,
 					no = colors.red,
 					s = colors.orange,
@@ -177,7 +177,15 @@ return {
 				return msg
 			end,
 			icon = " LSP:",
-			color = { fg = "#ffffff", gui = "bold" },
+			color = { fg = colors.violet, gui = "bold" },
+		})
+
+		ins_right({
+			-- codeium return status string
+			function()
+				return vim.api.nvim_call_function("codeium#GetStatusString", {})
+			end,
+			color = { fg = colors.blue, gui = "bold" },
 		})
 
 		-- Add components to right sections
@@ -213,13 +221,13 @@ return {
 			cond = conditions.hide_in_width,
 		})
 
-		ins_right({
-			function()
-				return "▊"
-			end,
-			color = { fg = colors.blue },
-			padding = { left = 1 },
-		})
+		-- ins_right({
+		-- 	function()
+		-- 		return "▊"
+		-- 	end,
+		-- 	color = { fg = colors.blue },
+		-- 	padding = { left = 1 },
+		-- })
 
 		-- Now don't forget to initialize lualine
 		lualine.setup(config)
