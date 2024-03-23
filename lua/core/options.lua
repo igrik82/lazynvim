@@ -8,6 +8,13 @@ augroup END
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+"Enable true ColorColumn
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+
 ]])
 
 local opt = vim.opt -- for conciseness
@@ -20,8 +27,9 @@ vim.g.floaterm_autoclose = 0
 
 -- Disable virtual_text since it's redundant due to lsp_lines.
 -- vim.diagnostic.config({
--- 	virtual_text = false,
+--   virtual_text = false,
 -- })
+
 --Spelling
 opt.spell = true
 opt.spelllang = { "en_us" }
