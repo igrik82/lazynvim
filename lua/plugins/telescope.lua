@@ -9,22 +9,38 @@ return {
 		"sharkdp/fd",
 		"nvim-tree/nvim-web-devicons",
 	},
+	keys = {
+		{ "f", "", desc = "Telescope" },
+		{
+			"<leader>ff",
+			":lua require('telescope.builtin').find_files()<cr>",
+			desc = "Telescope find files",
+		},
+		{
+			"<leader>fg",
+			":lua require('telescope.builtin').live_grep()<cr>",
+			desc = "Telescope live grep",
+		},
+		{
+			"<leader>fb",
+			":lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>",
+			desc = "Telescope current buffer fuzzy find",
+		},
+		{
+			"<leader>fh",
+			":lua require('telescope.builtin').help_tags()<cr>",
+			desc = "Telescope help tags",
+		},
+	},
 	init = function()
 		require("telescope").load_extension("fzy_native")
 
 		local wk = require("which-key")
 		local mappings = {
-
-			-- Mapping
-			f = "Telescope",
-			ff = { ":lua require('telescope.builtin').find_files()<cr>", "Find files in current directory" },
-			fb = {
-				":lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>",
-				"Search for the string in current buffer",
+			f = {
+				name = "Telescope",
 			},
-			fg = { ":lua require('telescope.builtin').live_grep()<cr>", "Search for the string in current directory" },
 		}
-
 		local opts = { prefix = "<leader>" }
 		wk.register(mappings, opts)
 	end,

@@ -1,12 +1,16 @@
 return {
   {
     "moll/vim-bbye",
-    config = function()
-      vim.keymap.set("n", "<leader>x", ":Bdelete<CR>", { desc = "Close current buffer" })
-    end,
+    keys = {
+      { "<leader>x", ":Bdelete<CR>", desc = "Close current buffer" },
+    },
   },
   {
     "akinsho/bufferline.nvim",
+    keys = {
+      { "<tab>",   "<Cmd>BufferLineCycleNext<CR>", desc = "Next buffer" },
+      { "<S-tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Previous buffer" },
+    },
     version = "*",
     config = function()
       require("bufferline").setup({
@@ -38,10 +42,6 @@ return {
           },
         },
       })
-
-      -- keymaps for bufferline
-      vim.keymap.set("n", "<tab>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
-      vim.keymap.set("n", "<S-tab>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
     end,
   },
 }

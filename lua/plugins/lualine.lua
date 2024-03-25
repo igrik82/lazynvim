@@ -1,11 +1,13 @@
 return {
   "nvim-lualine/lualine.nvim",
+  lazy = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
   init = function()
     -- Eviline config for lualine
     -- Author: shadmansaleh
     -- Credit: glepnir
     local lualine = require("lualine")
+    local lazy_status = require("lazy.status")
 
     -- Color table for highlights
     -- stylua: ignore
@@ -180,14 +182,17 @@ return {
     --   icon = " LSP:",
     --   color = { fg = colors.magenta, gui = "bold" },
     -- })
+
     ins_left({
       -- Lazy updates pending
       function()
-        if vim.g.lazy_stats == nil then
-          return ""
+        local status = lazy_status.updates()
+        if status ~= false then
+          return status
         end
-        return vim.g.lazy_stats
+        return ""
       end,
+      color = { fg = colors.red, gui = "bold" },
     })
 
     ins_right({
@@ -201,7 +206,8 @@ return {
     ins_right({
       -- Lsp server name .
       function()
-        local msg = ""
+        -- local msg = ""
+        local msg = ""
         local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
         local clients = vim.lsp.get_active_clients({ bufnr = 0 })
         if next(clients) == nil then
@@ -210,9 +216,8 @@ return {
         for _, client in ipairs(clients) do
           local filetypes = client.config.autostart and client.config.filetypes
           if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return ""
-            -- icon = "",
-            -- color = { fg = colors.green, gui = "bold" },
+            -- return ""
+            return ""
           end
         end
         return msg

@@ -1,6 +1,7 @@
 return {
   "nvimtools/none-ls.nvim",
   dependencies = "nvim-lua/plenary.nvim",
+  ft = { "html", "json", "yaml", "markdown", "toml" },
   config = function()
     local null_ls = require("null-ls")
 

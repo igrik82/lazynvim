@@ -1,6 +1,7 @@
 return {
 	{
 		"hiphish/rainbow-delimiters.nvim",
+		event = "BufReadPre",
 		main = "rainbow",
 		opts = {},
 		config = function()
@@ -9,6 +10,7 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		event = "BufReadPre",
 		main = "ibl",
 		opts = {},
 		config = function()

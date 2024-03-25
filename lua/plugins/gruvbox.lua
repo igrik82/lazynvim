@@ -1,5 +1,7 @@
 return {
   "sainnhe/gruvbox-material",
+  lazy = false,
+  priority = 1000,
   config = function()
     -- Accent themes by default medium
     -- vim.g.gruvbox_material_background = "soft"

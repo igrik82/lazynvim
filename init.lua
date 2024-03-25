@@ -19,5 +19,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
-
+require("lazy").setup("plugins", {
+  change_detection = {
+    notify = false,
+  },
+  install = {
+    colorscheme = { "gruvbox-material", "habamax" },
+  },
+  checker = {
+    enabled = true,
+    concurrency = 1,
+  },
+})
