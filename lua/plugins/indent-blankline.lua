@@ -1,7 +1,7 @@
 return {
 	{
 		"hiphish/rainbow-delimiters.nvim",
-		event = "BufReadPre",
+		event = "VeryLazy",
 		main = "rainbow",
 		opts = {},
 		config = function()
