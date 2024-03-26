@@ -11,6 +11,7 @@ return {
       { "<tab>",   "<Cmd>BufferLineCycleNext<CR>", desc = "Next buffer" },
       { "<S-tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Previous buffer" },
     },
+    event = "BufLeave",
     version = "*",
     config = function()
       require("bufferline").setup({
