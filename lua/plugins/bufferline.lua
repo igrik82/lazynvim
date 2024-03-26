@@ -26,7 +26,9 @@ return {
               padding = 1,
             },
           },
+          tab_size = 28,
           diagnostics = "nvim_lsp",
+          separator_style = "slant", --| "slope" | "thick" | "thin" | { 'any', 'any' },
           indicator = {
             -- icon = "  ", -- this should be omitted if indicator style is not 'icon'
             -- icon = "  ",
@@ -34,11 +36,27 @@ return {
             -- icon = "  ",
             -- icon = "  ",
             -- icon = "  ",
-            icon = "  ",
+            -- icon = "  ",
             -- icon = "  ",
             -- icon = "  ",
             -- icon = " ● ",
-            style = "icon",
+            -- style = "icon",
+            style = "none",
+          },
+        },
+        highlights = {
+          close_button = {
+            fg = "#515257",
+          },
+          close_button_visible = {
+            fg = "#eb1a07",
+            --   bg = "<colour-value-here>",
+          },
+          close_button_selected = {
+            fg = "#eb1a07",
+            --
+            --   fg = "<colour-value-here>",
+            --   bg = "<colour-value-here>",
           },
         },
       })
