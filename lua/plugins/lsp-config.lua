@@ -2,6 +2,7 @@ return {
   {
     "williamboman/mason.nvim",
     event = "VeryLazy",
+    -- lazy = true,
     config = function()
       require("mason").setup()
     end,
@@ -48,7 +49,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    event = "VeryLazy",
+    event = "InsertEnter",
     ft = { "lua", "python", "sh", "c", "cpp", "arduino", "html", "css" },
     config = function()
       local lspconfig = require("lspconfig")
