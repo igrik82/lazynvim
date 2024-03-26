@@ -10,7 +10,7 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = "BufReadPre",
+		event = "VeryLazy",
 		main = "ibl",
 		opts = {},
 		config = function()
