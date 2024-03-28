@@ -4,16 +4,16 @@ return {
 		-- ft = { "lua", "python", "sh", "c", "cpp", "arduino", "html", "css" },
 		event = "InsertEnter",
 		dependencies = {
-			{"hrsh7th/cmp-nvim-lsp", event = "InsertEnter"},
-			{"hrsh7th/cmp-buffer", event = "InsertEnter"},
-			{"hrsh7th/cmp-path", event = "InsertEnter"},
-			{"hrsh7th/cmp-cmdline", event = "InsertEnter"},
-			{"hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter"},
-			{"onsails/lspkind-nvim", event = "InsertEnter"},
-			-- {"L3MON4D3/LuaSnip", event = "InsertEnter"},
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"onsails/lspkind-nvim",
+			-- "L3MON4D3/LuaSnip",
 			dependencies = {
-				-- {"saadparwaiz1/cmp_luasnip", event = "InsertEnter"},
-				-- {"rafamadriz/friendly-snippets", event = "InsertEnter"},
+				-- "saadparwaiz1/cmp_luasnip",
+				-- "rafamadriz/friendly-snippets",
 			},
 		},
 
@@ -27,7 +27,7 @@ return {
 				snippet = {
 					-- REQUIRED - you must specify a snippet engine
 					-- expand = function(args)
-						-- require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+					-- require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 					-- end,
 				},
 				window = {
@@ -42,7 +42,7 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 				}),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp"},
+					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "path" },
 					{ name = "cmdline" },
