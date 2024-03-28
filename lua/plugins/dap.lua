@@ -125,7 +125,7 @@ return {
 		}
 		dap.adapters.cpptools = {
 			type = "executable",
-			command = "/home/igrik/.local/share/nvim/mason/bin/OpenDebugAD7",
+			command = vim.fn.stdpath("data") .. "/mason/bin/OpenDebugAD7",
 			args = {},
 		}
 
