@@ -10,10 +10,10 @@ return {
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"onsails/lspkind-nvim",
-			-- "L3MON4D3/LuaSnip",
+			"L3MON4D3/LuaSnip",
 			dependencies = {
-				-- "saadparwaiz1/cmp_luasnip",
-				-- "rafamadriz/friendly-snippets",
+				"saadparwaiz1/cmp_luasnip",
+				"rafamadriz/friendly-snippets",
 			},
 		},
 
@@ -21,18 +21,36 @@ return {
 			-- Set  up nvim-cmp.
 			local cmp = require("cmp")
 			local lspkind = require("lspkind")
-			-- require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_vscode").lazy_load()
 
+			local function border(hl_name)
+				return {
+					{ "╭", hl_name },
+					{ "─", hl_name },
+					{ "╮", hl_name },
+					{ "│", hl_name },
+					{ "╯", hl_name },
+					{ "─", hl_name },
+					{ "╰", hl_name },
+					{ "│", hl_name },
+				}
+			end
 			cmp.setup({
 				snippet = {
 					-- REQUIRED - you must specify a snippet engine
-					-- expand = function(args)
-					-- require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-					-- end,
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+					end,
 				},
 				window = {
-					-- completion = cmp.config.window.bordered(),
-					-- documentation = cmp.config.window.bordered(),
+					completion = {
+						border = border("CmpBorder"),
+						winhighlight = "Normal:CmpMenu", --,CursorLine:CmpMenuSel,Search:None",
+					},
+					documentation = {
+						border = border("CmpDocBorder"),
+						winhighlight = "Normal:CmpDoc",
+					},
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -47,7 +65,7 @@ return {
 					{ name = "path" },
 					{ name = "cmdline" },
 					{ name = "buffer" },
-					-- { name = "luasnip" }, -- For luasnip users.
+					{ name = "luasnip" }, -- For luasnip users.
 					{ name = "lspkind-nvim" },
 				}),
 				-- Lspkin settings
@@ -60,13 +78,12 @@ return {
 						ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 						show_labelDetails = true, -- show labelDetails in menu. Disabled by default
 
-						-- The function below will be called before any actual modifications from lspkind
-						-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-						---@diagnostic disable-next-line: unused-local
-						before = function(entry, vim_item)
-							--  ...
-							return vim_item
-						end,
+						-- -- The function below will be called before any actual modifications from lspkind
+						-- -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+						-- before = function(entry, vim_item)
+						-- 	--  ...
+						-- 	return vim_item
+						-- end,
 					}),
 				},
 			})
