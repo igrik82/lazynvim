@@ -22,9 +22,6 @@ local opt = vim.opt -- for conciseness
 --decrease log lsp messages
 vim.lsp.set_log_level("off")
 
--- Do not close floatterm
-vim.g.floaterm_autoclose = 0
-
 -- Disable virtual_text since it's redundant due to lsp_lines.
 -- vim.diagnostic.config({
 --   virtual_text = false,
