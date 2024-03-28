@@ -113,6 +113,19 @@ return {
 
 		dap.configurations.cpp = {
 			{
+
+        -- Функция для копирования необходимого файла для дебагагера cppdbg
+				function()
+					local path = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/"
+					local file_requierd = path .. "nvim-dap.ad7Engine.json"
+					local file = io.open(file_requierd, "r")
+					if file then
+						file:close()
+					else
+						os.execute("cp " .. path .. "cppdbg.ad7Engine.json" .. " " .. file_requierd)
+					end
+				end,
+
 				name = "Launch file",
 				type = "cpptools",
 				request = "launch",
