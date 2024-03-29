@@ -10,7 +10,7 @@ return {
 	keys = {
 		{
 			"<leader>dd",
-			":lua require('dap').continue()<CR>",
+			":lua require('dapui').toggle()<CR>",
 			desc = "Start debugging",
 		},
 		{
