@@ -29,7 +29,7 @@ return {
 			desc = "Debug continue",
 		},
 		{
-			"<leader>dO",
+			"<leader>dn",
 			":lua require('dap').step_over()<CR>",
 			desc = "Debug step over",
 		},
@@ -39,9 +39,24 @@ return {
 			desc = "Debug step into",
 		},
 		{
+			"<leader>da",
+			":lua require('dapui').elements.watches.add()<CR>",
+			desc = "Watches add",
+		},
+		{
+			"<leader>dr",
+			":lua require('dapui').elements.watches.remove()<CR>",
+			desc = "Watches remove",
+		},
+		{
 			"<leader>ds",
-			":lua require('dap').repl.open()<CR>",
-			desc = "Debug inspect state",
+			":lua require('dap').disconnect({restart = false, terminateDebuggee = true})<CR>",
+			desc = "Debug stop",
+		},
+		{
+			"<leader>dS",
+			":lua require('dap').restart()<CR>",
+			desc = "Debug restart",
 		},
 	},
 	init = function()
@@ -57,7 +72,89 @@ return {
 	config = function()
 		require("nvim-dap-virtual-text").setup({})
 
-		require("dapui").setup()
+		require("dapui").setup({
+			controls = {
+				element = "console",
+				enabled = true,
+				---@diagnostic disable-next-line: duplicate-index
+				icons = {
+					disconnect = "",
+					pause = "",
+					play = "",
+					run_last = "",
+					step_back = "",
+					step_into = "",
+					step_out = "",
+					step_over = "",
+					terminate = "",
+				},
+				element_mappings = {},
+				expand_lines = true,
+				floating = {
+					border = "single",
+					mappings = {
+						close = { "q", "<Esc>" },
+					},
+				},
+				force_buffers = true,
+				---@diagnostic disable-next-line: duplicate-index
+				icons = {
+					collapsed = "",
+					current_frame = "",
+					expanded = "",
+				},
+			},
+			layouts = {
+				{
+					elements = {
+						{
+							id = "scopes",
+							size = 0.50,
+						},
+						{
+							id = "breakpoints",
+							size = 0.15,
+						},
+						{
+							id = "stacks",
+							size = 0.15,
+						},
+						{
+							id = "watches",
+							size = 0.25,
+						},
+					},
+					position = "left",
+					size = 50,
+				},
+				{
+					elements = {
+						-- {
+						-- 	id = "repl",
+						-- size = 0.5,
+						-- },
+						{
+							id = "console",
+							size = 1.0,
+						},
+					},
+					position = "bottom",
+					size = 15,
+				},
+			},
+			mappings = {
+				edit = "e",
+				expand = { "<CR>", "<2-LeftMouse>" },
+				open = "o",
+				remove = "d",
+				repl = "r",
+				toggle = "t",
+			},
+			render = {
+				indent = 1,
+				max_value_lines = 100,
+			},
+		})
 		local dap, dapui = require("dap"), require("dapui")
 		dap.adapters.python = function(cb, config)
 			if config.request == "attach" then
@@ -114,7 +211,7 @@ return {
 		dap.configurations.cpp = {
 			{
 
-        -- Функция для копирования необходимого файла для дебагагера cppdbg
+				-- Функция для копирования необходимого файла для дебагагера cppdbg
 				function()
 					local path = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/"
 					local file_requierd = path .. "nvim-dap.ad7Engine.json"
