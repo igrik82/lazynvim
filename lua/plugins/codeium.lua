@@ -1,6 +1,8 @@
 return {
 	"Exafunction/codeium.vim",
 	event = "InsertEnter",
+  -- after the commit :wq stop responding
+  commit = "3cc779d",
   keys = {
     {"<C-x>", ":CodeiumToggle<CR>", desc = "Codeium toggle"},
   },
