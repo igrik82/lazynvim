@@ -1,7 +1,9 @@
 return {
+
 	{
 		"hiphish/rainbow-delimiters.nvim",
-		event = "VeryLazy",
+		-- Do not work with lazy loaading
+		-- event = "VeryLazy",
 		main = "rainbow",
 		opts = {},
 		config = function()
