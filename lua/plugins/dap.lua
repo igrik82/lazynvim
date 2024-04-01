@@ -227,7 +227,9 @@ return {
 				type = "cpptools",
 				request = "launch",
 				program = function()
-					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					local filenamefull = vim.fn.bufname("%")
+					local filenameshort = filenamefull:match("(.+)%..+")
+					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/bin/" .. filenameshort)
 				end,
 				cwd = "${workspaceFolder}",
 				stopAtEntry = true,
