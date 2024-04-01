@@ -1,10 +1,61 @@
 return {
-	"christoomey/vim-tmux-navigator",
-	keys = {
-		{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-		{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-		{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-		{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-		{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+	{
+		"christoomey/vim-tmux-navigator",
+		ft = { "cpp", "python" },
+		keys = {
+			{ "<C-Left>", ":TmuxNavigateLeft<cr>" },
+			{ "<C-Down>", ":TmuxNavigateDown<cr>" },
+			{ "<C-Up>", ":TmuxNavigateUp<cr>" },
+			{ "<C-Right>", ":TmuxNavigateRight<cr>" },
+			{ "<C-\\>", ":TmuxNavigatePrevious<cr>" },
+		},
+	},
+	{
+		"preservim/vimux",
+		keys = {
+			{
+				"<leader>tr",
+				":w<cr>:VimuxRunCommand('~/.bin/runner.sh ' . bufname('%') . ' ' . getcwd())<cr>",
+				desc = "Compile & run",
+			},
+			{
+				"<leader>tR",
+				":w<cr>:VimuxRunCommand('~/.bin/runner.sh ' . bufname('%') . ' ' . getcwd())<cr> :TmuxNavigateRight<cr>",
+				desc = "Compile & run with focus",
+			},
+			{
+				"<leader>to",
+				":w<cr>:VimuxOpenRunner<cr>",
+				desc = "Open terminal",
+			},
+			{
+				"<leader>tc",
+				":w<cr>:VimuxCloseRunner<cr>",
+				desc = "Close terminal",
+			},
+			{
+				"<leader>tz",
+				":w<cr>:VimuxZoomRunner<cr>",
+				desc = "Zoom terminal",
+			},
+			{
+				"<leader>tl",
+				":w<cr>:VimuxClearTerminalScreen<cr>",
+				desc = "Clear terminal",
+			},
+		},
+		init = function()
+			vim.g.VimuxOrientation = "h"
+			vim.g.VimuxHeight = "40"
+
+			local wk = require("which-key")
+			local mappings = {
+				t = {
+					name = "Terminal",
+				},
+			}
+			local opts = { prefix = "<leader>" }
+			wk.register(mappings, opts)
+		end,
 	},
 }
