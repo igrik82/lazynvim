@@ -210,7 +210,6 @@ return {
 
 		dap.configurations.cpp = {
 			{
-
 				-- Функция для копирования необходимого файла для дебагагера cppdbg
 				function()
 					local path = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/"
@@ -223,13 +222,21 @@ return {
 					end
 				end,
 
+				-- Функция для сохранения и компиляции файла
+				function()
+					vim.cmd("w")
+					os.execute("~/.bin/runner.sh " .. vim.fn.bufname("%") .. " " .. vim.fn.getcwd())
+				end,
+
 				name = "Launch file",
 				type = "cpptools",
 				request = "launch",
 				program = function()
 					local filenamefull = vim.fn.bufname("%")
 					local filenameshort = filenamefull:match("(.+)%..+")
-					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/bin/" .. filenameshort)
+					-- Убрал запрос на дебаг выбираемого файла
+					-- return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/bin/" .. filenameshort)
+					return vim.fn.getcwd() .. "/bin/" .. filenameshort
 				end,
 				cwd = "${workspaceFolder}",
 				stopAtEntry = true,
