@@ -15,7 +15,7 @@ return {
 		keys = {
 			{
 				"<leader>tr",
-				":w<cr>:VimuxRunCommand('~/.bin/runner.sh ' . bufname('%') . ' ' . getcwd())<cr>",
+				":w<cr>:VimuxRunCommand('~/.bin/runner.sh ' . bufname('%') . ' ' . getcwd())<cr><cr>",
 				desc = "Compile & run",
 			},
 			{
