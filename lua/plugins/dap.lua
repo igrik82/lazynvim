@@ -225,18 +225,43 @@ return {
 				-- Функция для сохранения и компиляции файла
 				function()
 					vim.cmd("w")
-					os.execute("~/.bin/runner.sh " .. vim.fn.bufname("%") .. " " .. vim.fn.getcwd())
+
+					local exit_code =
+						os.execute("~/.bin/runner.sh " .. vim.fn.bufname("%") .. " " .. vim.fn.getcwd() .. " true")
+					if exit_code ~= 0 then
+						vim.notify("Compilation failed! Please check for errors!", vim.log.levels.ERROR, {
+							title = "Cmake",
+						})
+					end
 				end,
 
 				name = "Launch file",
 				type = "cpptools",
 				request = "launch",
 				program = function()
-					local filenamefull = vim.fn.bufname("%")
-					local filenameshort = filenamefull:match("(.+)%..+")
+					-- local filenamefull = vim.fn.bufname("%")
+					-- local filenameshort = filenamefull:match("(.+)%..+")
 					-- Убрал запрос на дебаг выбираемого файла
 					-- return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/bin/" .. filenameshort)
-					return vim.fn.getcwd() .. "/bin/" .. filenameshort
+					-- return vim.fn.getcwd() .. "/bin/" .. filenameshort
+
+					-- Функция для получения имени проекта для Debugging
+					local cmakefile = vim.fn.getcwd() .. "/CMakeLists.txt"
+					local name_pattern = "project%((.-)%)"
+					local file = io.open(cmakefile, "r")
+					if not file then
+						vim.notify("Cmake file not founD", vim.log.levels.ERROR, {
+							title = "Cmake",
+						})
+						return
+					end
+
+					for line in file:lines() do
+						local name = line:match(name_pattern)
+						if name then
+							return vim.fn.getcwd() .. "/build/Debug/" .. name
+						end
+					end
 				end,
 				cwd = "${workspaceFolder}",
 				stopAtEntry = true,
