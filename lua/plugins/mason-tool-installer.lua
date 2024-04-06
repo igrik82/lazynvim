@@ -11,7 +11,7 @@ return {
 				-- Delete all unnesary symbols
 				arch = arch:gsub("\n", "")
 				if arch == "aarch64" then
-					return ""
+					return
 				else
 					-- Перечислить нужные пакеты здесь в фроматее
 					-- return "cpptools", "beautysh"
