@@ -12,6 +12,23 @@ return {
 		event = "VeryLazy",
 		-- lazy = true,
 		config = function()
+			-- Функция проверки архитектуры для установки cpptools
+			local packet = function()
+				local handle = io.popen("uname -m", "r")
+				if handle then
+					local arch = handle:read("*a")
+					handle:close()
+					-- Delete all unnesary symbols
+					arch = arch:gsub("\n", "")
+					if arch == "aarch64" then
+						return
+					else
+						-- Перечислить нужные пакеты здесь в фроматее
+						-- return "cpptools", "beautysh"
+						return "clangd"
+					end
+				end
+			end
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"tsserver", -- Java
@@ -24,7 +41,7 @@ return {
 					"pyright", -- Python
 					"jsonls", -- Json
 					"yamlls", -- YAML
-					"clangd", -- C++
+					packet(),
 				},
 				-- auto-install configured servers (with lspconfig)
 				automatic_installation = true, -- not the same as ensure_installed
