@@ -1,5 +1,11 @@
 return {
 	"neogitorg/neogit",
+	branch = (function()
+		if vim.version.gt(vim.version(), { 0, 9, 99 }) then
+			return "nightly"
+		end
+    return "master"
+	end)(),
 	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -24,7 +30,7 @@ return {
 		},
 	},
 	config = function()
-    require("neogit").setup({})
+		require("neogit").setup({})
 		local wk = require("which-key")
 		local mappings = {
 			g = "NeoGit",
