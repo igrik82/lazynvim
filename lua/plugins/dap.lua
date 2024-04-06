@@ -223,15 +223,15 @@ return {
 				end,
 
 				-- Функция для сохранения и компиляции файла
-				function()
+				compile = function()
 					vim.cmd("w")
-
 					local exit_code =
 						os.execute("~/.bin/runner.sh " .. vim.fn.bufname("%") .. " " .. vim.fn.getcwd() .. " true")
 					if exit_code ~= 0 then
 						vim.notify("Compilation failed! Please check for errors!", vim.log.levels.ERROR, {
 							title = "Cmake",
 						})
+						return false
 					end
 				end,
 
@@ -250,21 +250,21 @@ return {
 					local name_pattern = "project%((.-)%)"
 					local file = io.open(cmakefile, "r")
 					if not file then
-						vim.notify("Cmake file not founD", vim.log.levels.ERROR, {
+						vim.notify("Cmake file not found", vim.log.levels.ERROR, {
 							title = "Cmake",
 						})
-						return
+						return nil
 					end
 
 					for line in file:lines() do
 						local name = line:match(name_pattern)
-						if name then
+						if name ~= nil then
 							return vim.fn.getcwd() .. "/build/Debug/" .. name
 						end
 					end
 				end,
 				cwd = "${workspaceFolder}",
-				stopAtEntry = true,
+				stopAtEntry = false,
 			},
 		}
 		dap.adapters.cpptools = {
