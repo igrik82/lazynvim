@@ -1,10 +1,11 @@
 return {
 	"nvimtools/none-ls.nvim",
 	dependencies = "nvim-lua/plenary.nvim",
-	ft = { "html", "json", "yaml", "markdown", "toml" },
+	ft = { "sh", "html", "json", "yaml", "markdown", "toml" },
 	config = function()
 		local null_ls = require("null-ls")
 
+		local augroup = vim.api.nvim_create_augroup("NoneLs", {})
 		-- for concisenessV
 		local formatting = null_ls.builtins.formatting -- to setup formatters
 		-- local diagnostics = null_ls.builtins.diagnostics -- to setup linters
@@ -22,6 +23,9 @@ return {
 				-- }),
 				formatting.black.with({
 					extra_args = { "--line-length", "79" },
+				}),
+				formatting.shfmt.with({
+					extra_args = { "-i", "2", "-ci" },
 				}),
 				-- diagnostics.pylint.with({
 				-- 	diagnostics_on_save = true,
@@ -44,18 +48,18 @@ return {
 			},
 
 			-- -- you can reuse a shared lspconfig on_attach callback here
-			-- on_attach = function(client, bufnr)
-			--   if client.supports_method("textDocument/formatting") then
-			--     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			--     vim.api.nvim_create_autocmd("BufWritePre", {
-			--       group = augroup,
-			--       buffer = bufnr,
-			--       callback = function()
-			--         vim.lsp.buf.format({ async = false })
-			--       end,
-			--     })
-			--   end
-			-- end,
+			on_attach = function(client, bufnr)
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({ async = false })
+						end,
+					})
+				end
+			end,
 		})
 	end,
 }

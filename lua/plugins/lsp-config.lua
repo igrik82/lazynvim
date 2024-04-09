@@ -58,6 +58,8 @@ return {
 					"stylua", -- lua formatter
 					"eslint_d", -- ts/js linter
 					"clang-format", -- C formater
+					"shfmt", -- Shell formatter
+					"shellcheck", -- Shell linter
 				},
 				-- auto-install configured formatters & linters (with null-ls)
 				automatic_installation = true,
@@ -89,10 +91,10 @@ return {
 							buffer = bufnr,
 							callback = function()
 								vim.lsp.buf.format({
-									filter = function(client)
-										--  only use null-ls for formatting instead of lsp server
-										return client.name == "null-ls"
-									end,
+									-- filter = function(client)
+									-- 	--  only use null-ls for formatting instead of lsp server
+									-- 	return client.name == "null-ls"
+									-- end,
 									bufnr = bufnr,
 									async = true,
 								})
