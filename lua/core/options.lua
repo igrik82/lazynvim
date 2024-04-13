@@ -36,24 +36,25 @@ opt.background = "dark"
 opt.signcolumn = "yes"
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
-opt.number = true         -- shows absolute line number on cursor line (when relative number is on)
+opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 
 -- Splits horizontal below and vertical right
 opt.splitbelow = true
 opt.splitright = true
 
 -- tabs & indentation
-opt.tabstop = 2       -- 4 spaces for tabs (prettier default)
-opt.shiftwidth = 2    -- 4 spaces for indent width
-opt.expandtab = true  -- expand tab to spaces
+opt.tabstop = 2 -- 4 spaces for tabs (prettier default)
+opt.shiftwidth = 2 -- 4 spaces for indent width
+opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
-opt.wrap = false -- disable line wrapping
+opt.wrap = true -- disable line wrapping
+opt.linebreak = true -- wrap lines at convenient points
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true  -- if you include mixed case in your search, assumes you want case-sensitive
+opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 opt.hlsearch = false
 opt.iskeyword:append("-")
 
