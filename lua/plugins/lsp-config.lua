@@ -109,7 +109,7 @@ return {
 						local mappings = {
 							l = {
 								name = "LSP things",
-								d = { ":Lspsaga goto_definition<cr>", "Goto defenition" },
+								d = { ":=vim.lsp.buf.definition()<cr>", "Goto defenition" },
 								D = { ":Lspsaga goto_type_definition<cr>", "Goto type defenition" },
 								k = { ":Lspsaga hover_doc<cr>", "Hover" },
 								o = { ":Lspsaga outline<cr>", "List functions" },
