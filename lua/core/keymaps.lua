@@ -1,4 +1,8 @@
--- local keymap = vim.keymap
+local keymap = vim.keymap
+
+--Remap escape key
+keymap.set("i", "jk", "<ESC>")
+keymap.set("i", "kj", "<ESC>")
 
 --bufferline
 -- keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", { noremap = true })
