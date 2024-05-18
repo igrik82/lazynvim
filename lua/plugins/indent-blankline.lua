@@ -12,6 +12,7 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		commit = "3d08501",
 		event = "VeryLazy",
 		main = "ibl",
 		opts = {},

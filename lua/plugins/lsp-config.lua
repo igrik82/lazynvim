@@ -174,6 +174,11 @@ return {
 				},
 				cmd = {
 					"clangd",
+					"--background-index",
+					"--clang-tidy",
+					-- "--header-insertion=never",
+					"--suggest-missing-includes",
+					"--cross-file-rename",
 					"--offset-encoding=utf-16",
 				},
 			})

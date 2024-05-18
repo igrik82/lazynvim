@@ -4,8 +4,9 @@ return {
 		if vim.version.gt(vim.version(), { 0, 9, 99 }) then
 			return "nightly"
 		end
-    return "master"
+		return "master"
 	end)(),
+	tag = "v0.0.1",
 	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
