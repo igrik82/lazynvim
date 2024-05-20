@@ -1,12 +1,14 @@
 return {
 	"neogitorg/neogit",
-	branch = (function()
-		if vim.version.gt(vim.version(), { 0, 9, 99 }) then
-			return "nightly"
-		end
-		return "master"
-	end)(),
-	tag = "v0.0.1",
+	branch = "master",
+	-- (function()
+	-- 	if vim.version.gt(vim.version(), { 0, 9, 99 }) then
+	-- 		return "nightly"
+	-- 	else
+	-- 		return "master"
+	-- 	end
+	-- end)(),
+	-- tag = "v0.0.1",
 	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
