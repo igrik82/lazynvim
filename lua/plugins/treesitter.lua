@@ -7,12 +7,15 @@ return {
 
 		-- configure telescope
 		treesitter.setup({
-      ensure_installed = {
-        "markdown",
-        "markdown_inline",
-      },
+			ensure_installed = {
+				"markdown",
+				"markdown_inline",
+			},
 			auto_install = true,
 			highlight = {
+				enable = true,
+			},
+			indent = {
 				enable = true,
 			},
 		})
