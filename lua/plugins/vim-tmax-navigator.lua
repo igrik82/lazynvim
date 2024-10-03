@@ -49,13 +49,7 @@ return {
 			vim.g.VimuxHeight = "40"
 
 			local wk = require("which-key")
-			local mappings = {
-				t = {
-					name = "Terminal",
-				},
-			}
-			local opts = { prefix = "<leader>" }
-			wk.register(mappings, opts)
+			wk.add({ "<leader>t", group = "Terminal" })
 		end,
 	},
 }

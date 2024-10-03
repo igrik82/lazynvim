@@ -2,6 +2,9 @@ return {
 	"folke/which-key.nvim",
 	lazy = true,
 	event = "VeryLazy",
+	dependencies = {
+		-- "echasnovski/mini.nvim",
+	},
 	keys = { "<leader>", "<c-r>" },
 	cmd = "WhichKey",
 	init = function()

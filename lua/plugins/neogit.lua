@@ -35,10 +35,6 @@ return {
 	config = function()
 		require("neogit").setup({})
 		local wk = require("which-key")
-		local mappings = {
-			g = "NeoGit",
-		}
-		local opts = { prefix = "<leader>" }
-		wk.register(mappings, opts)
+		wk.add({ "<leader>g", group = "Neogit" })
 	end,
 }

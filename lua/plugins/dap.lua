@@ -61,13 +61,7 @@ return {
 	},
 	init = function()
 		local wk = require("which-key")
-		local mappings = {
-			d = {
-				name = "Debugging",
-			},
-		}
-		local opts = { prefix = "<leader>" }
-		wk.register(mappings, opts)
+		wk.add({ "<leader>d", group = "Debugging" })
 	end,
 	config = function()
 		require("nvim-dap-virtual-text").setup({})
