@@ -106,21 +106,17 @@ return {
 					callback = function(ev)
 						-- Do LSP trought whhich-key
 						local wk = require("which-key")
-						local mappings = {
-							l = {
-								name = "LSP things",
-								d = { ":=vim.lsp.buf.definition()<cr>", "Goto defenition" },
-								D = { ":Lspsaga goto_type_definition<cr>", "Goto type defenition" },
-								k = { ":Lspsaga hover_doc<cr>", "Hover" },
-								o = { ":Lspsaga outline<cr>", "List functions" },
-								a = { ":Lspsaga code_action<cr>", "Code action" },
-								r = { ":Lspsaga rename<cr>", "Rename" },
-								R = { ":Lspsaga finder<cr>", "Reference" },
-							},
-						}
-						local optss = { prefix = "<leader>" }
+						wk.add({
+							{ "<leader>l", group = "LSP things" },
+							{ "<leader>lD", ":Lspsaga goto_type_definition<cr>", desc = "Goto type defenition" },
+							{ "<leader>lR", ":Lspsaga finder<cr>", desc = "Reference" },
+							{ "<leader>la", ":Lspsaga code_action<cr>", desc = "Code action" },
+							{ "<leader>ld", ":=vim.lsp.buf.definition()<cr>", desc = "Goto defenition" },
+							{ "<leader>lk", ":Lspsaga hover_doc<cr>", desc = "Hover" },
+							{ "<leader>lo", ":Lspsaga outline<cr>", desc = "List functions" },
+							{ "<leader>lr", ":Lspsaga rename<cr>", desc = "Rename" },
+						})
 
-						wk.register(mappings, optss)
 						-- Enable completion triggered by <c-x><c-o>
 						vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 						-- Buffer local mappings.

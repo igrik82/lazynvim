@@ -42,6 +42,6 @@ return {
 		require("telescope").load_extension("fzy_native")
 
 		local wk = require("which-key")
-		wk.add({ "<leader>f}", group = "Telescope" })
+		wk.add({ "<leader>f", group = "Telescope" })
 	end,
 }
