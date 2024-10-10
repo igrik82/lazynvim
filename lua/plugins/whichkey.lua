@@ -3,7 +3,7 @@ return {
 	lazy = true,
 	event = "VeryLazy",
 	dependencies = {
-		-- "echasnovski/mini.nvim",
+		"echasnovski/mini.nvim",
 	},
 	keys = { "<leader>", "<c-r>" },
 	cmd = "WhichKey",
