@@ -69,7 +69,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = "InsertEnter",
-		ft = { "lua", "python", "sh", "c", "cpp", "arduino", "html", "css" },
+		ft = { "lua", "python", "sh", "c", "cpp", "arduino", "html", "css", "ino" },
 		config = function()
 			local lspconfig = require("lspconfig")
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -147,16 +147,16 @@ return {
 				on_attach = on_attach,
 				cmd = {
 					"arduino-language-server",
-
+					"-clangd",
+					"/usr/bin/clangd",
+					"-cli",
+					"/usr/bin/arduino-cli",
 					"-cli-config",
 					"/home/igrik/.arduino15/arduino-cli.yaml",
 					"-fqbn",
-					"esp32:esp32:esp32",
-					"-cli",
-					"/usr/bin/arduino-cli",
-					"-clangd",
-					"/usr/bin/clangd",
+					"arduino:esp32:esp32",
 				},
+				-- filetypes = { "ino", "arduino" },
 			})
 
 			-- configure clangd server
