@@ -29,7 +29,7 @@ vim.lsp.set_log_level("off")
 
 --Spelling
 opt.spell = true
-opt.spelllang = { "en_us" }
+opt.spelllang = { "en_us", "ru_ru" }
 --appearance
 --opt.termguicolors = true
 opt.background = "dark"
