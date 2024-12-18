@@ -35,7 +35,9 @@ return {
 				-- 		diagnostic.code = diagnostic.message_id
 				-- 	end,
 				-- }),
-				formatting.clang_format,
+				formatting.clang_format.with({
+					extra_args = { "--style=WebKit" },
+				}),
 
 				-- diagnostics.flake8.with({
 				-- 	-- diagnostics_on_save = true,
