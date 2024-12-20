@@ -204,7 +204,8 @@ return {
 
 		dap.configurations.cpp = {
 			{
-				-- Функция для копирования необходимого файла для дебагагера cppdbg
+				-- Обязательно установить дебаггер dbg с помощью пакетного менеджера
+				-- Функция для копирования необходимого файла для дебаггера dbg
 				function()
 					local path = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/"
 					local file_requierd = path .. "nvim-dap.ad7Engine.json"
