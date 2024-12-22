@@ -231,18 +231,11 @@ return {
 				end,
 
 				name = "Launch file",
-				type = "cpptools",
+				type = "cppdbg",
 				request = "launch",
 				program = function()
-					-- local filenamefull = vim.fn.bufname("%")
-					-- local filenameshort = filenamefull:match("(.+)%..+")
-					-- Убрал запрос на дебаг выбираемого файла
-					-- return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/bin/" .. filenameshort)
-					-- return vim.fn.getcwd() .. "/bin/" .. filenameshort
-
 					-- Функция для получения имени проекта для Debugging
 					local cmakefile = vim.fn.getcwd() .. "/CMakeLists.txt"
-					local name_pattern = "project%((.-)%)"
 					local file = io.open(cmakefile, "r")
 					if not file then
 						vim.notify("Cmake file not found", vim.log.levels.ERROR, {
@@ -252,21 +245,47 @@ return {
 					end
 
 					for line in file:lines() do
-						local name = line:match(name_pattern)
+						local name = line:match("project%((%w+)%)")
 						if name ~= nil then
 							return vim.fn.getcwd() .. "/build/Debug/" .. name
 						end
 					end
+					print("Project name not found")
 				end,
 				cwd = "${workspaceFolder}",
-				stopAtEntry = false,
+				stopAtEntry = true,
 			},
 		}
-		dap.adapters.cpptools = {
+		dap.adapters.cppdbg = {
+			id = "cppdbg",
 			type = "executable",
 			command = vim.fn.stdpath("data") .. "/mason/bin/OpenDebugAD7",
-			args = {},
 		}
+		-- !!!!! Если что-то с дебаггером не так, то попробовать стандартную конфигурацию!!!!!
+		-- dap.configurations.cpp = {
+		-- 	{
+		-- 		name = "Launch file",
+		-- 		type = "cppdbg",
+		-- 		request = "launch",
+		-- 		program = function()
+		-- 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/Debug/", "file")
+		-- 		end,
+		-- 		cwd = "${workspaceFolder}",
+		-- 		stopAtEntry = true,
+		-- 	},
+		-- 	{
+		-- 		name = "Attach to gdbserver :1234",
+		-- 		type = "cppdbg",
+		-- 		request = "launch",
+		-- 		MIMode = "gdb",
+		-- 		miDebuggerServerAddress = "localhost:1234",
+		-- 		miDebuggerPath = "/usr/bin/gdb",
+		-- 		cwd = "${workspaceFolder}",
+		-- 		program = function()
+		-- 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		-- 		end,
+		-- 	},
+		-- }
 
 		-- icons for dap-ui
 		local signs = {
