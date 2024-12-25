@@ -73,5 +73,5 @@ opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
 --Set cursorlinr and colomn
-opt.cursorline = true
-opt.cursorcolumn = true
+-- opt.cursorline = true
+-- opt.cursorcolumn = true
