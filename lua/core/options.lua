@@ -31,7 +31,7 @@ vim.lsp.set_log_level("off")
 opt.spell = true
 opt.spelllang = { "en_us", "ru_ru" }
 --appearance
---opt.termguicolors = true
+-- opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 -- line numbers
