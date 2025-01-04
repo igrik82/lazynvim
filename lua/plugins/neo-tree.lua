@@ -182,6 +182,12 @@ return {
 					hide_hidden = true, -- only works on Windows for hidden files/directories
 					hide_by_name = {
 						--"node_modules"
+						"compile_commands.json",
+						"build.sh",
+						"Makefile",
+						"strip_warn.sh",
+						"sdkconfig",
+						"component.mk",
 					},
 					hide_by_pattern = { -- uses glob style patterns
 						--"*.meta",
